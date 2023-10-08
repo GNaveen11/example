@@ -1,0 +1,88 @@
+package Assignment;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+
+public class LibraryInformationSystem {
+	 Resource r=new Resource();
+	
+
+	public static void main(String[] args) {
+		LibraryInformationSystem lib=new LibraryInformationSystem();
+		// TODO Auto-generated method stub
+		
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter Your Choice:");
+		int choice=sc.nextInt();
+		switch(choice) {
+		case 1:
+			lib.process1();
+			break;
+		case 2:
+			
+			break;
+		case 3:
+			
+			break;
+		default:
+				
+				break;
+			
+		}
+		
+	}
+	
+	public void process1() {
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter the Member ID:");
+		int member_id=sc.nextInt();
+		boolean member_flag=false;
+		
+		for(Membership m:r.getMemberArray()){
+		{
+			if(member_id == m.getMember_id()) {
+				member_flag=false;
+				System.out.println("Enter the Book ID:");
+				int book_id=sc.nextInt();
+				boolean book_flag=false;
+				for(Book b : r.getBookArray()) {
+					if(book_id==b.getAccession_no()) {
+						book_flag=true;
+						boolean book_availability_flag=false;
+						if(b.getAvailable()!=0) {
+							book_availability_flag=true;
+							boolean max_books_flag=false;
+							if(m.getMaxbooks()<=m.getMaxbooks()) {
+								max_books_flag=true;
+								int x=m.getMaxbooks();
+								int y=b.getAvailable();
+								System.out.println("Get the Book from Library Incharge");
+								b.setAvailable(y-1);
+								m.setMaxbooks(x-1);	
+								break;
+							}
+							else{
+								System.out.println("You have already cross the limitations of Maximum Books");
+							}
+						}else{
+							System.out.println("Book is not Available");
+						 }
+					}
+					else if(!book_flag){
+						System.out.println("Books ID not found");
+						}
+					}
+				}
+			if(!member_flag) {
+				System.out.println("Member ID doesn't exist");
+			}
+			
+		}
+		
+		
+		
+		}
+	
+	
+	}}
