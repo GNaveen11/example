@@ -1,0 +1,99 @@
+package Assignment;
+
+import java.util.Scanner;
+
+public class LibraryInformationSystem {
+	Resource r=new Resource();
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		LibraryInformationSystem lib=new LibraryInformationSystem();
+		
+		Scanner sc=new Scanner(System.in);
+		
+		int choice=0;
+		do {
+		System.out.println("1.Take a Book 2.Return a Book 3.Member's Information");
+		System.out.println("Enter Your Choice:");
+		choice=sc.nextInt();
+		switch(choice) {
+		case 1:
+			lib.process1();
+			break;
+		case 2:
+			//lib.process3();
+			break;
+		case 3:
+			//lib.process2();
+			break;
+		case 4:
+			choice=0;
+			break;
+		default:
+				System.out.println("You Entered Wrong choice.Please Entered the Correct Choice");
+				break;
+			}
+		}while(choice!=0);
+		}
+	public void process1() {
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter the Member ID:");
+		int member_id=sc.nextInt();
+		Membership mem=member_check(member_id);
+		if(mem!=null)
+			System.out.println("Hi! "+mem.getMember_name()+"\nEnter the Book ID:");
+		int book_id=sc.nextInt();
+		Book book=book_check(book_id);
+		if(book!=null)
+			System.out.println("Enter 1 to confirm to take book");
+		if(sc.nextInt()==1) {
+			System.out.println("Collect the Book from library incharge.");
+			System.out.println("Book has been issued");
+			mem.setMaxbooks(mem.getMaxbooks()-1);
+			System.out.println("Remaining Your limits:"+mem.getMaxbooks());
+		}
+		else {
+			System.out.println("Bye");
+		}
+		}
+		
+
+	
+	public Membership member_check(int x) {
+		boolean member_flag=false;
+		for(Membership m:r.getMembershipArray()){
+			if(x == m.getMember_id()) {
+				member_flag=true;
+				System.out.println("Member Id Accpeted");
+				if(m.getMaxbooks()>0) 
+					return m;
+				else {
+					System.out.println("You have exhausted your limits");
+				}
+			}
+		}
+		if(!member_flag) {
+			System.out.println("member ID not found");
+		}
+		return null;
+	}
+	public Book book_check(int y) {
+		boolean book_flag=false;
+		for(Book b : r.getBookArray()) {
+			if(y==b.getAccession_no()) {
+				book_flag=true;
+				if(b.getAvailable()!=0) {
+					System.out.println("Book is available");
+					return b;
+				}
+				else
+					System.out.println("This Book is not available");
+			}
+		}
+		if(!book_flag) {
+			System.out.println("Book ID not found");
+		}
+		return null;
+	}
+		
+}
