@@ -1,0 +1,46 @@
+public class Employee {
+	int e_no;
+	String e_name;
+	int age;
+	float basic_salary;
+	
+	public void accept() {
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter the Employee ID:");
+		int e_no=sc.nextInt();
+		System.out.println("Enter the Employee Name:");
+		String e_name=sc.next();
+		System.out.println("Enter the Employee age:");
+		int age=sc.nextInt();
+		System.out.println("Enter the Basic Salary:");
+		float basic_salary=sc.nextFloat();
+		
+	}
+	public double calculate() {
+		float hra,da,pf,net;
+		hra=(19.5f/100)*basic_salary;
+		da=(18.45f/100)*basic_salary;
+		pf=(9.10f/100)*basic_salary;
+		net=basic_salary+hra-da-pf;
+		if(age>50) {
+			System.out.println(net);
+			return (net+7000);
+		}
+		System.out.println(net);
+		return net;
+	}
+	public void print() {
+		//System.out.println("Employee ID:"+e_no+"\nEmployee Name:"+e_name+"\nEmployee Age:"+age+"\nBasic Salary:"+basic_salary+"\nNet Salary:"+net);
+	}
+	
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Employee e=new Employee();
+		e.accept();
+		e.calculate();
+		e.print();
+
+	}
+
+}
